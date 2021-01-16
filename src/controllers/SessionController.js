@@ -8,10 +8,21 @@ update: quando queremos alterar alguma sessão
 destroy: quando queremos deletar alguma sessão
 */
 
+import User from '../models/User';
+
 class SessionController{
 
-    store(req, res){
-        return res.json({ message: 'Minha Api!'})
+    async store(req, res){
+        const { email } = req.body;
+
+        // verificando se esse usuário já existe
+        let user = await User.findOne({ email });
+
+        if(!user){
+            user = await User.create({ email });
+        }
+
+        return res.json(user);
     }
 
 }

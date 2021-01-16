@@ -5,7 +5,7 @@ import SessionController from './controllers/SessionController';
 
 const routes = new Router();
 
-routes.get('/sessions', SessionController.store);
+routes.post('/sessions', SessionController.store);
 
 
 export default routes;
